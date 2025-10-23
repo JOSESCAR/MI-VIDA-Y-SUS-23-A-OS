@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amor de Loja 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@300;400;600&family=Crimson+Pro:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-fondo: #faf8f5;
+            --color-papel: #fff;
+            --color-texto: #3a3a3a;
+            --color-acento: #d97a7a;
+            --color-secundario: #e8b4a8;
+            --color-terciario: #f4dcd3;
+            --color-verde: #b8c9a8;
+            --color-azul: #9db4c9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.7;
+        }
+
+        /* Escritura a mano para títulos */
+        .titulo-mano {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8em;
+            color: var(--color-acento);
+            text-align: center;
+            margin: 30px 0;
+            font-weight: 700;
+        }
+
+        /* Pantalla de entrada */
+        .pantalla-entrada {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #faf8f5 0%, #f4ece8 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease;
+        }
+
+        .pantalla-entrada.ocultar {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sobre {
+            width: 300px;
+            height: 200px;
+            background: #e8dfd8;
+            position: relative;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .sobre:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .sobre-tapa {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: #d4c3b8;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .sobre-contenido {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .sobre-contenido .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .sobre-texto {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5em;
+            color: var(--color-texto);
+        }
+
+        /* Navegación minimalista */
+        .nav {
+            background: var(--color-papel);
+            padding: 20px 0;
+            border-bottom: 2px solid var(--color-terciario);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: none;
+        }
+
+        .nav.mostrar {
+            display: block;
+        }
+
+        .nav-lista {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            list-style: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            font-size: 0.95em;
+            color: var(--color-texto);
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-item:hover,
+        .nav-item.activo {
+            background: var(--color-terciario);
+            border-color: var(--color-secundario);
+        }
+
+        /* Container principal */
+        .contenedor {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .seccion {
+            display: none;
+            background: var(--color-papel);
+            padding: 50px 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--color-acento);
+        }
+
+        .seccion.activa {
+            display: block;
+            animation: aparecer 0.5s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sección inicio */
+        .hero {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .numero-grande {
+            font-family: 'Crimson Pro', serif;
+            font-size: 7em;
+            font-weight: 600;
+            color: var(--color-acento);
+            line-height: 1;
+            margin: 20px 0;
+        }
+
+        .texto-intro {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: var(--color-texto);
+            margin: 30px 0;
+            padding: 25px;
+            background: var(--color-terciario);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-acento);
+        }
+
+        /* Grid de cards simple */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: var(--color-fondo);
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid var(--color-terciario);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-secundario);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-emoji {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .card-titulo {
+            font-family: 'Caveat', cursive;
+            font-size: 1.6em;
+            color: var(--color-acento);
+            margin-bottom: 10px;
+        }
+
+        .card-texto {
+            font-size: 0.95em;
+            color: var(--color-texto);
+            opacity: 0.8;
+        }
+
+        /* Contador de tiempo */
+        .contador-tiempo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--color-fondo);
+            border-radius: 8px;
+        }
+
+        .tiempo-box {
+            text-align: center;
+            padding: 20px 10px;
+            background: var(--color-papel);
+            border-radius: 8px;
+            border: 2px solid var(--color-terciario);
+        }
+
+        .tiempo-numero {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5em;
+            font-weight: 600;
+            color: var(--color-acento);
+            display: block;
+        }
+
+        .tiempo-label {
+            font-size: 0.9em;
+            color: var(--color-texto);
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* Galería simple */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .foto-box {
+            aspect-ratio: 1;
+            background: var(--color-terciario);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid var(--color-secundario);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .foto-box:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .foto-emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .foto-titulo {
+            font-family: 'Caveat', cursive;
+            font-size: 1.2em;
+            text-align: center;
+            color: var(--color-texto);
+        }
+
+        /* Timeline más orgánico */
+        .timeline {
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--color-terciario);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px 0 30px 30px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            background: var(--color-acento);
+            border-radius: 50%;
+            border: 3px solid var(--color-papel);
+        }
+
+        .timeline-fecha {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4em;
+            color: var(--color-acento);
+            margin-bottom: 8px;
+        }
+
+        .timeline-titulo {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: var(--color-texto);
+        }
+
+        .timeline-texto {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: var(--color-texto);
+            opacity: 0.85;
+        }
+
+        /* Razones - lista simple */
+        .razones-lista {
+            margin: 30px 0;
+        }
+
+        .razon {
+            padding: 15px 20px;
+            margin: 12px 0;
+            background: var(--color-fondo);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-acento);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .razon.visible {
+            animation: deslizar 0.5s ease forwards;
+        }
+
+        @keyframes deslizar {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .razon-num {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--color-acento);
+            margin-right: 10px;
+        }
+
+        /* Juego minimalista */
+        .pregunta-box {
+            background: var(--color-fondo);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid var(--color-terciario);
+        }
+
+        .pregunta-num {
+            display: inline-block;
+            background: var(--color-acento);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .pregunta-texto {
+            font-size: 1.3em;
+            margin: 20px 0;
+            color: var(--color-texto);
+        }
+
+        .opciones {
+            display: grid;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .opcion {
+            padding: 18px 25px;
+            background: var(--color-papel);
+            border: 2px solid var(--color-terciario);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+        }
+
+        .opcion:hover {
+            background: var(--color-terciario);
+            border-color: var(--color-secundario);
+        }
+
+        .opcion.correcta {
+            background: var(--color-verde);
+            border-color: var(--color-verde);
+            color: white;
+        }
+
+        .opcion.incorrecta {
+            background: #d9a0a0;
+            border-color: #d9a0a0;
+            color: white;
+        }
+
+        .resultado-box {
+            text-align: center;
+            padding: 40px;
+            background: var(--color-terciario);
+            border-radius: 8px;
+            margin: 30px 0;
+            display: none;
+        }
+
+        .resultado-box.mostrar {
+            display: block;
+        }
+
+        .puntuacion-grande {
+            font-family: 'Crimson Pro', serif;
+            font-size: 4em;
+            color: var(--color-acento);
+            font-weight: 600;
+            margin: 20px 0;
+        }
+
+        /* Música minimalista */
+        .playlist {
+            margin: 30px 0;
+        }
+
+        .cancion {
+            padding: 20px 25px;
+            margin: 12px 0;
+            background: var(--color-fondo);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-terciario);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cancion:hover {
+            background: var(--color-terciario);
+            border-left-color: var(--color-acento);
+        }
+
+        .cancion.reproduciendo {
+            background: var(--color-secundario);
+            border-left-color: var(--color-acento);
+        }
+
+        .cancion-info {
+            flex: 1;
+        }
+
+        .cancion-titulo {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .cancion-artista {
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .cancion-icon {
+            font-size: 1.5em;
+        }
+
+        .categoria-musica {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8em;
+            color: var(--color-acento);
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-terciario);
+        }
+
+        /* Carta */
+        .carta {
+            background: linear-gradient(135deg, #fdfbf8 0%, #f9f6f2 100%);
+            padding: 50px 40px;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid var(--color-terciario);
+        }
+
+        .carta-fecha {
+            text-align: right;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2em;
+            color: var(--color-texto);
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+
+        .carta-saludo {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8em;
+            color: var(--color-acento);
+            margin-bottom: 20px;
+        }
+
+        .carta-texto {
+            font-size: 1.05em;
+            line-height: 2;
+            color: var(--color-texto);
+            margin-bottom: 25px;
+        }
+
+        .carta-firma {
+            text-align: right;
+            font-family: 'Caveat', cursive;
+            font-size: 1.6em;
+            color: var(--color-texto);
+            margin-top: 40px;
+        }
+
+        /* Botones naturales */
+        .boton {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--color-acento);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            text-decoration: none;
+        }
+
+        .boton:hover {
+            background: var(--color-secundario);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(217, 122, 122, 0.3);
+        }
+
+        .boton-secundario {
+            background: var(--color-azul);
+        }
+
+        .boton-secundario:hover {
+            background: #89a3b8;
+        }
+
+        /* Modal simple */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.mostrar {
+            display: block;
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--color-papel);
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.mostrar {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-titulo {
+            font-family: 'Caveat', cursive;
+            font-size: 2em;
+            color: var(--color-acento);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-texto {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: center;
+            color: var(--color-texto);
+            margin-bottom: 25px;
+        }
+
+        /* Corazones flotantes */
+        .corazon-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            animation: flotar 4s ease-out forwards;
+        }
+
+        @keyframes flotar {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .seccion {
+                padding: 35px 25px;
+            }
+
+            .titulo-mano {
+                font-size: 2em;
+            }
+
+            .numero-grande {
+                font-size: 5em;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .carta {
+                padding: 35px 25px;
+            }
+        }
+
+        /* Detalles decorativos */
+        .detalle-esquina {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        /* Subtítulos */
+        .subtitulo {
+            text-align: center;
+            font-size: 1em;
+            color: var(--color-texto);
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de entrada -->
+    <div class="pantalla-entrada" id="pantallaEntrada">
+        <div class="sobre" onclick="abrirSobre()">
+            <div class="sobre-tapa"></div>
+            <div class="sobre-contenido">
+                <div class="emoji">💌</div>
+                <div class="sobre-texto">Ábrelo</div>
+            </div>
+        </div>
+        <p style="margin-top: 30px; font-family: 'Caveat', cursive; font-size: 1.5em; color: var(--color-texto);">
+            Un regalo especial para ti
+        </p>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="nav" id="nav">
+        <ul class="nav-lista">
+            <li class="nav-item activo" onclick="irSeccion('inicio')">Inicio</li>
+            <li class="nav-item" onclick="irSeccion('galeria')">Fotos</li>
+            <li class="nav-item" onclick="irSeccion('historia')">Historia</li>
+            <li class="nav-item" onclick="irSeccion('razones')">23 Razones</li>
+            <li class="nav-item" onclick="irSeccion('juego')">Juego</li>
+            <li class="nav-item" onclick="irSeccion('musica')">Música</li>
+            <li class="nav-item" onclick="irSeccion('carta')">Carta</li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor -->
+    <div class="contenedor">
+        
+        <!-- Inicio -->
+        <section class="seccion activa" id="inicio">
+            <div class="hero">
+                <h1 class="titulo-mano">Feliz Cumpleaños Mi Amor</h1>
+                <div class="numero-grande">23</div>
+                <div class="texto-intro">
+                    Hoy celebramos 23 años de tu vida. Recuerdo esa noche en el Parque León cuando todo cambió, 
+                    y al día siguiente cuando te besé y supe que no podría sacarte de mi vida (ni quería hacerlo). 
+                    Desde tu graduación como física hasta nuestras aventuras en Loja y el Chimborazo, 
+                    cada momento contigo ha sido especial. Tu inteligencia me fascina, tu pasión por la ciencia 
+                    me inspira, y escuchar "100 años" o a Silvana Estrada contigo le da banda sonora perfecta 
+                    a nuestra historia. Trabajar juntos en nuestro proyecto me mostró que somos un gran equipo. 
+                    Esta es mi forma de decirte: te amo.
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card" onclick="irSeccion('galeria')">
+                    <div class="card-emoji">📸</div>
+                    <div class="card-titulo">Nuestros Momentos</div>
+                    <div class="card-texto">Del Parque León al Chimborazo</div>
+                </div>
+                <div class="card" onclick="irSeccion('historia')">
+                    <div class="card-emoji">📖</div>
+                    <div class="card-titulo">Nuestra Historia</div>
+                    <div class="card-texto">Desde aquella noche especial</div>
+                </div>
+                <div class="card" onclick="irSeccion('razones')">
+                    <div class="card-emoji">💕</div>
+                    <div class="card-titulo">23 Razones</div>
+                    <div class="card-texto">Por qué eres increíble</div>
+                </div>
+                <div class="card" onclick="irSeccion('juego')">
+                    <div class="card-emoji">🧠</div>
+                    <div class="card-titulo">Juego</div>
+                    <div class="card-texto">Física, historia y más</div>
+                </div>
+                <div class="card" onclick="irSeccion('musica')">
+                    <div class="card-emoji">🎵</div>
+                    <div class="card-titulo">Nuestra Música</div>
+                    <div class="card-texto">De 100 años a Silvana</div>
+                </div>
+                <div class="card" onclick="irSeccion('carta')">
+                    <div class="card-emoji">✉️</div>
+                    <div class="card-titulo">Carta para Ti</div>
+                    <div class="card-texto">Palabras del corazón</div>
+                </div>
+            </div>
+
+            <h2 class="titulo-mano" style="font-size: 2em; margin-top: 50px;">Tiempo Juntos</h2>
+            <div class="contador-tiempo" id="contadorTiempo"></div>
+        </section>
+
+        <!-- Galería -->
+        <section class="seccion" id="galeria">
+            <h1 class="titulo-mano">Galería de Recuerdos</h1>
+            <p class="subtitulo">Cada foto cuenta una historia</p>
+            
+            <div class="galeria">
+                <div class="foto-box">
+                    <div class="foto-emoji">🌳</div>
+                    <div class="foto-titulo">Parque León</div>
+                </div>
+                <div class="foto-box">
+                    <div class="foto-emoji">💋</div>
+                    <div class="foto-titulo">Nuestro primer beso</div>
+                </div>
+                <div class="foto-box">
+                    <div class="foto-emoji">🎓</div>
+                    <div class="foto-titulo">Tu graduación en física</div>
+                </div>
+                <div class="foto-box">
+                    <div class="foto-emoji">🏔️</div>
+                    <div class="foto-titulo">En Loja</div>
+                </div>
+                <div class="foto-box">
+                    <div class="foto-emoji">⛰️</div>
+                    <div class="foto-titulo">Chimborazo</div>
+                </div>
+                <div class="foto-box">
+                    <div class="foto-emoji">💻</div>
+                    <div class="foto-titulo">Nuestro proyecto juntos</div>
+                </div>
+                <div class="foto-box">
+                    <div class="foto-emoji">🎵</div>
+                    <div class="foto-titulo">Escuchando música</div>
+                </div>
+                <div class="foto-box">
+                    <div class="foto-emoji">❤️</div>
+                    <div class="foto-titulo">Un momento especial</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="color: var(--color-texto); opacity: 0.7; line-height: 1.8;">
+                    💡 <strong>Para agregar fotos reales:</strong><br>
+                    1. Sube tus fotos a <a href="https://imgur.com" target="_blank" style="color: var(--color-acento);">Imgur.com</a> o <a href="https://imgbb.com" target="_blank" style="color: var(--color-acento);">ImgBB.com</a><br>
+                    2. Copia el "enlace directo" de cada foto<br>
+                    3. Edita el código y reemplaza los emojis con: <br>
+                    <code style="background: var(--color-terciario); padding: 5px 10px; border-radius: 5px; display: inline-block; margin-top: 5px;">
+                        style="background-image: url('TU-ENLACE-AQUI'); background-size: cover;"
+                    </code>
+                </p>
+            </div>
+        </section>
+
+        <!-- Historia -->
+        <section class="seccion" id="historia">
+            <h1 class="titulo-mano">Nuestra Historia</h1>
+            <p class="subtitulo">Los momentos que nos trajeron aquí</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-fecha">El inicio</div>
+                    <div class="timeline-titulo">Una noche en el Parque León</div>
+                    <div class="timeline-texto">
+                        Salimos a pasear por el Parque León. Esa noche especial cuando nuestros caminos se cruzaron de verdad. 
+                        El aire fresco, las conversaciones, las risas... Todo empezó ahí.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-fecha">Al día siguiente</div>
+                    <div class="timeline-titulo">Nuestro primer beso</div>
+                    <div class="timeline-texto">
+                        No pude esperar más. Al día siguiente te besé, y desde ese momento no he podido sacarte de mi vida. 
+                        Ni quiero hacerlo. Ese beso lo cambió todo.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-fecha">Un logro importante</div>
+                    <div class="timeline-titulo">Tu graduación en física</div>
+                    <div class="timeline-texto">
+                        Vi brillar tu inteligencia y dedicación. Te graduaste como física y yo estuve ahí, 
+                        orgulloso de verte alcanzar tus metas. Eres increíble en todo lo que haces.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-fecha">Aventura a tu ciudad</div>
+                    <div class="timeline-titulo">Me fui a Loja</div>
+                    <div class="timeline-texto">
+                        Conocí tu ciudad, la Capital Cultural. Cada calle que me mostraste, cada rincón, 
+                        cada historia que me contaste. Loja es hermosa, pero tú la haces especial.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-fecha">Conquistando alturas</div>
+                    <div class="timeline-titulo">El Chimborazo</div>
+                    <div class="timeline-texto">
+                        Fuimos juntos al volcán más alto del Ecuador. Las vistas, el frío, la aventura... 
+                        Pero lo mejor fue compartirlo contigo. Cada aventura es mejor a tu lado.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-fecha">Trabajando juntos</div>
+                    <div class="timeline-titulo">Nuestro proyecto</div>
+                    <div class="timeline-texto">
+                        Terminamos haciendo un proyecto juntos. Verte trabajar, crear, pensar... 
+                        Es fascinante. Somos un gran equipo en todo lo que hacemos.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-fecha">Hoy</div>
+                    <div class="timeline-titulo">23 años de ti</div>
+                    <div class="timeline-texto">
+                        Celebramos otro año de tu vida. 23 años de ser increíble, inteligente, hermosa. 
+                        Y muchos más por venir juntos. Feliz cumpleaños, mi amor. 🎉
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 23 Razones -->
+        <section class="seccion" id="razones">
+            <h1 class="titulo-mano">23 Razones por las que te amo</h1>
+            <p class="subtitulo">Una por cada año de tu vida</p>
+            
+            <button class="boton" onclick="mostrarRazones()">Ver todas las razones</button>
+            
+            <div class="razones-lista" id="razonesLista"></div>
+        </section>
+
+        <!-- Juego -->
+        <section class="seccion" id="juego">
+            <h1 class="titulo-mano">Juego del Conocimiento</h1>
+            <p class="subtitulo">Física, Historia, Silvana Estrada y Loja</p>
+            
+            <div id="juegoContainer"></div>
+            
+            <div class="resultado-box" id="resultadoBox">
+                <h2 style="font-family: 'Caveat', cursive; font-size: 2.5em; color: var(--color-acento);">
+                    ¡Completado!
+                </h2>
+                <div class="puntuacion-grande" id="puntuacionFinal">0/8</div>
+                <p style="font-size: 1.2em; margin: 20px 0;" id="mensajeFinal"></p>
+                <button class="boton" onclick="reiniciarJuego()">Jugar de nuevo</button>
+            </div>
+        </section>
+
+        <!-- Música -->
+        <section class="seccion" id="musica">
+            <h1 class="titulo-mano">Nuestra Playlist</h1>
+            <p class="subtitulo">Las canciones que nos unen</p>
+            
+            <div class="playlist">
+                <!-- PARA AGREGAR MÚSICA REAL DE SPOTIFY/YOUTUBE:
+                     1. Ve a Spotify/YouTube y encuentra la canción
+                     2. Haz clic en "Compartir" > "Copiar enlace"
+                     3. Reemplaza onclick="reproducir(...)" con onclick="window.open('TU-ENLACE', '_blank')"
+                     Ejemplo: onclick="window.open('https://open.spotify.com/track/...', '_blank')"
+                -->
+                
+                <div class="categoria-musica">Silvana Estrada 🌹</div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Te Guardo')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">Te Guardo</div>
+                        <div class="cancion-artista">Silvana Estrada</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Marchita')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">Marchita</div>
+                        <div class="cancion-artista">Silvana Estrada</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Lo Sagrado')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">Lo Sagrado</div>
+                        <div class="cancion-artista">Silvana Estrada</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Un Día A La Vez')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">Un Día A La Vez</div>
+                        <div class="cancion-artista">Silvana Estrada</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="categoria-musica">Nuestras Canciones 💕</div>
+                
+                <div class="cancion" onclick="reproducir(this, '100 años')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">100 años</div>
+                        <div class="cancion-artista">Pienso en tu mirá</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'El mató un policía motorizado')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">El mató un policía motorizado</div>
+                        <div class="cancion-artista">Nuestra canción indie favorita</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Tu poeta')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">Tu poeta</div>
+                        <div class="cancion-artista">Una canción especial para nosotros</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Primera vez juntos')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">La del Parque León</div>
+                        <div class="cancion-artista">Esa noche especial</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Juntos')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">La que cantamos juntos</div>
+                        <div class="cancion-artista">Aunque desafinemos un poco</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carta -->
+        <section class="seccion" id="carta">
+            <h1 class="titulo-mano">Una Carta para Ti</h1>
+            <p class="subtitulo">Palabras desde el corazón</p>
+            
+            <div class="carta">
+                <div class="carta-fecha">22 de octubre, 2025</div>
+                <div class="carta-saludo">Mi amor,</div>
+                
+                <div class="carta-texto">
+                    Hoy celebras 23 años de vida. 23 vueltas alrededor del sol, como dirías tú. 
+                    Y yo celebro cada momento desde aquella noche en el Parque León cuando nuestras vidas se entrelazaron.
+                </div>
+                
+                <div class="carta-texto">
+                    Recuerdo el día después de esa noche, cuando te besé y supe que algo había cambiado para siempre. 
+                    Desde ese momento no he podido sacarte de mi vida, y créeme, ni lo intento. 
+                    Eres la mejor cosa que me ha pasado.
+                </div>
+                
+                <div class="carta-texto">
+                    Vi tu graduación como física y me llenó de orgullo verte alcanzar tus metas. 
+                    Tu dedicación, tu inteligencia, tu pasión por la ciencia... Todo me fascina de ti. 
+                    Eres brillante en todo lo que haces.
+                </div>
+                
+                <div class="carta-texto">
+                    Me llevaste a conocer Loja, tu ciudad, y cada calle cobró vida con tus historias. 
+                    Después conquistamos juntos el Chimborazo, literalmente llegamos a las alturas. 
+                    Cada aventura contigo es memorable.
+                </div>
+                
+                <div class="carta-texto">
+                    Trabajar juntos en nuestro proyecto me mostró que somos un gran equipo. 
+                    Ver tu mente en acción, crear algo juntos, es de las mejores experiencias. 
+                    Contigo todo es mejor.
+                </div>
+                
+                <div class="carta-texto">
+                    Escuchar "100 años" o a Silvana Estrada contigo le da banda sonora perfecta a nuestra historia. 
+                    Cada canción, cada momento compartido, se queda grabado en mi memoria.
+                </div>
+                
+                <div class="carta-texto">
+                    En este nuevo año de tu vida, deseo que todos tus sueños se hagan realidad. 
+                    Que sigas brillando con esa luz que te caracteriza. Que cada día te acerque más 
+                    a todo lo que quieres lograr.
+                </div>
+                
+                <div class="carta-texto">
+                    Te amo con todo mi corazón. Hoy, mañana y siempre.
+                </div>
+                
+                <div class="carta-texto">
+                    Felices 23, mi amor.
+                </div>
+                
+                <div class="carta-firma">
+                    Con todo mi amor,<br>
+                    [Tu nombre] ❤️
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="overlay" id="overlay" onclick="cerrarModal()"></div>
+    <div class="modal" id="modal">
+        <h3 class="modal-titulo" id="modalTitulo">💕</h3>
+        <p class="modal-texto" id="modalTexto"></p>
+        <button class="boton" onclick="cerrarModal()">Cerrar</button>
+    </div>
+
+    <script>
+        // Variables
+        let preguntaActual = 0;
+        let puntuacion = 0;
+        let cancionReproduciendo = null;
+
+        // Preguntas personalizadas
+        const preguntas = [
+            {
+                pregunta: "🔬 ¿Quién formuló la teoría de la relatividad?",
+                opciones: ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Stephen Hawking"],
+                correcta: 1,
+                explicacion: "¡Correcto! Einstein revolucionó la física, igual que tú revolucionaste mi vida ❤️"
+            },
+            {
+                pregunta: "🎵 ¿De qué país es Silvana Estrada?",
+                opciones: ["Argentina", "España", "México", "Colombia"],
+                correcta: 2,
+                explicacion: "¡Exacto! De México, y su música es tan hermosa como tú 💕"
+            },
+            {
+                pregunta: "🏛️ ¿En qué año comenzó la Segunda Guerra Mundial?",
+                opciones: ["1939", "1941", "1935", "1945"],
+                correcta: 0,
+                explicacion: "¡Perfecto! Amas la historia tanto como yo te amo a ti 📚"
+            },
+            {
+                pregunta: "🌄 ¿Con qué apodo se conoce a Loja?",
+                opciones: ["Capital Cultural", "Ciudad Jardín", "Cuna de Artistas", "Capital Musical"],
+                correcta: 0,
+                explicacion: "¡Sí! La Capital Cultural de Ecuador, tan especial como tú 🎶"
+            },
+            {
+                pregunta: "⚡ En física, ¿qué mide un Newton?",
+                opciones: ["Velocidad", "Fuerza", "Energía", "Potencia"],
+                correcta: 1,
+                explicacion: "¡Correcto! Y la fuerza de mi amor por ti es inmensurable 💪❤️"
+            },
+            {
+                pregunta: "🎤 ¿Cuál es un álbum famoso de Silvana Estrada?",
+                opciones: ["Marchita", "Lo Sagrado", "Abrazo", "Todas las anteriores"],
+                correcta: 0,
+                explicacion: "¡Exacto! 'Marchita' es una obra maestra, como tú 🌹"
+            },
+            {
+                pregunta: "🏔️ ¿Entre qué provincias está Loja?",
+                opciones: ["Azuay y El Oro", "Zamora y El Oro", "Azuay y Zamora", "Todas"],
+                correcta: 3,
+                explicacion: "¡Perfecto! Conoces Loja tan bien como yo te conozco ❤️"
+            },
+            {
+                pregunta: "📚 ¿Qué civilización construyó Machu Picchu?",
+                opciones: ["Aztecas", "Mayas", "Incas", "Olmecas"],
+                correcta: 2,
+                explicacion: "¡Los Incas! Tu amor por la historia me fascina 🏛️"
+            }
+        ];
+
+        // 23 razones
+        const razones = [
+            "Desde esa noche en el Parque León, no he podido sacarte de mi vida",
+            "Nuestro primer beso al día siguiente lo cambió todo para siempre",
+            "Tu pasión por la física me muestra lo brillante que eres",
+            "Amas la historia tanto como yo amo cada momento contigo",
+            "Escuchar '100 años' contigo es mágico",
+            "Silvana Estrada suena diferente cuando estoy contigo",
+            "Vienes de Loja, la capital cultural, y eres mi obra de arte",
+            "Tu graduación como física fue uno de mis días más orgullosos",
+            "Me llevaste a conocer Loja y cada calle tiene tu historia",
+            "Conquistamos el Chimborazo juntos, literal y metafóricamente",
+            "Trabajar en nuestro proyecto juntos me mostró que somos un gran equipo",
+            "Tu forma de ver el mundo me fascina cada día",
+            "Eres fuerte como las montañas que escalamos",
+            "Tu inteligencia es tan impresionante como la relatividad de Einstein",
+            "Me haces sentir completo y feliz siempre",
+            "Tu abrazo es mi lugar favorito en todo el universo",
+            "Eres hermosa por dentro y por fuera",
+            "Tu amor por aprender me inspira a ser mejor",
+            "Compartimos sueños y aventuras juntos",
+            "Cuando hablas de física, tus ojos brillan de emoción",
+            "Eres auténtica y única, no hay nadie como tú",
+            "Me haces reír hasta llorar de felicidad",
+            "Simplemente porque eres TÚ, mi amor ❤️"
+        ];
+
+        // Funciones de navegación
+        function abrirSobre() {
+            document.getElementById('pantallaEntrada').classList.add('ocultar');
+            document.getElementById('nav').classList.add('mostrar');
+            crearCorazones(10);
+            actualizarContador();
+            setInterval(actualizarContador, 1000);
+        }
+
+        function irSeccion(seccionId) {
+            // Ocultar todas
+            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+            // Mostrar seleccionada
+            document.getElementById(seccionId).classList.add('activa');
+            
+            // Actualizar nav
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('activo'));
+            event.target.classList.add('activo');
+            
+            // Scroll arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Cargar juego si es necesario
+            if (seccionId === 'juego' && preguntaActual === 0) {
+                cargarPregunta();
+            }
+        }
+
+        // Contador de tiempo
+        function actualizarContador() {
+            const inicio = new Date('2023-01-01'); // CAMBIAR ESTA FECHA
+            const ahora = new Date();
+            const diff = ahora - inicio;
+            
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('contadorTiempo').innerHTML = `
+                <div class="tiempo-box">
+                    <span class="tiempo-numero">${dias}</span>
+                    <span class="tiempo-label">días</span>
+                </div>
+                <div class="tiempo-box">
+                    <span class="tiempo-numero">${horas}</span>
+                    <span class="tiempo-label">horas</span>
+                </div>
+                <div class="tiempo-box">
+                    <span class="tiempo-numero">${minutos}</span>
+                    <span class="tiempo-label">minutos</span>
+                </div>
+                <div class="tiempo-box">
+                    <span class="tiempo-numero">${segundos}</span>
+                    <span class="tiempo-label">segundos</span>
+                </div>
+            `;
+        }
+
+        // Razones
+        function mostrarRazones() {
+            const lista = document.getElementById('razonesLista');
+            lista.innerHTML = '';
+            event.target.style.display = 'none';
+            
+            razones.forEach((razon, i) => {
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.className = 'razon';
+                    div.innerHTML = `<span class="razon-num">${i + 1}.</span> ${razon}`;
+                    lista.appendChild(div);
+                    setTimeout(() => div.classList.add('visible'), 50);
+                }, i * 100);
+            });
+        }
+
+        // Juego
+        function cargarPregunta() {
+            if (preguntaActual >= preguntas.length) {
+                mostrarResultadoJuego();
+                return;
+            }
+            
+            const p = preguntas[preguntaActual];
+            document.getElementById('juegoContainer').innerHTML = `
+                <div class="pregunta-box">
+                    <div class="pregunta-num">Pregunta ${preguntaActual + 1} de ${preguntas.length}</div>
+                    <div class="pregunta-texto">${p.pregunta}</div>
+                    <div class="opciones">
+                        ${p.opciones.map((op, i) => `
+                            <button class="opcion" onclick="responder(${i})">${op}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function responder(indice) {
+            const p = preguntas[preguntaActual];
+            const botones = document.querySelectorAll('.opcion');
+            
+            botones.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === p.correcta) {
+                    btn.classList.add('correcta');
+                } else if (i === indice && i !== p.correcta) {
+                    btn.classList.add('incorrecta');
+                }
+            });
+            
+            if (indice === p.correcta) {
+                puntuacion++;
+                crearCorazones(5);
+                setTimeout(() => mostrarModal('¡Correcto!', p.explicacion), 500);
+            }
+            
+            setTimeout(() => {
+                preguntaActual++;
+                cargarPregunta();
+            }, indice === p.correcta ? 2500 : 1500);
+        }
+
+        function mostrarResultadoJuego() {
+            document.getElementById('juegoContainer').style.display = 'none';
+            document.getElementById('resultadoBox').classList.add('mostrar');
+            document.getElementById('puntuacionFinal').textContent = `${puntuacion}/${preguntas.length}`;
+            
+            let mensaje = '';
+            if (puntuacion === preguntas.length) {
+                mensaje = '¡Perfecta puntuación! Eres brillante como las estrellas ⭐';
+            } else if (puntuacion >= preguntas.length * 0.75) {
+                mensaje = '¡Excelente! Tu inteligencia me fascina 🌟';
+            } else if (puntuacion >= preguntas.length * 0.5) {
+                mensaje = '¡Muy bien! Como dice Silvana: eres "lo sagrado" 💕';
+            } else {
+                mensaje = 'Lo importante es cuánto te amo: infinito ❤️';
+            }
+            
+            document.getElementById('mensajeFinal').textContent = mensaje;
+            crearCorazones(15);
+        }
+
+        function reiniciarJuego() {
+            preguntaActual = 0;
+            puntuacion = 0;
+            document.getElementById('juegoContainer').style.display = 'block';
+            document.getElementById('resultadoBox').classList.remove('mostrar');
+            cargarPregunta();
+        }
+
+        // Música
+        function reproducir(elemento, nombre) {
+            const canciones = document.querySelectorAll('.cancion');
+            canciones.forEach(c => {
+                if (c !== elemento) {
+                    c.classList.remove('reproduciendo');
+                    c.querySelector('.cancion-icon').textContent = '▶️';
+                }
+            });
+            
+            if (cancionReproduciendo === nombre) {
+                elemento.classList.remove('reproduciendo');
+                elemento.querySelector('.cancion-icon').textContent = '▶️';
+                cancionReproduciendo = null;
+            } else {
+                elemento.classList.add('reproduciendo');
+                elemento.querySelector('.cancion-icon').textContent = '⏸️';
+                cancionReproduciendo = nombre;
+                mostrarModal('Reproduciendo', `"${nombre}" 🎵`);
+            }
+        }
+
+        // Modal
+        function mostrarModal(titulo, texto) {
+            document.getElementById('modalTitulo').textContent = titulo;
+            document.getElementById('modalTexto').textContent = texto;
+            document.getElementById('overlay').classList.add('mostrar');
+            document.getElementById('modal').classList.add('mostrar');
+        }
+
+        function cerrarModal() {
+            document.getElementById('overlay').classList.remove('mostrar');
+            document.getElementById('modal').classList.remove('mostrar');
+        }
+
+        // Corazones flotantes
+        function crearCorazones(cantidad) {
+            for (let i = 0; i < cantidad; i++) {
+                setTimeout(() => {
+                    const corazon = document.createElement('div');
+                    corazon.className = 'corazon-float';
+                    corazon.textContent = ['❤️', '💕', '💖'][Math.floor(Math.random() * 3)];
+                    corazon.style.left = Math.random() * 100 + '%';
+                    corazon.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    corazon.style.bottom = '-50px';
+                    document.body.appendChild(corazon);
+                    setTimeout(() => corazon.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // Easter egg
+        let codigo = '';
+        document.addEventListener('keypress', e => {
+            codigo += e.key;
+            if (codigo.includes('teamo')) {
+                mostrarModal('💕 Yo también!', '¡Yo también te amo muchísimo! ❤️❤️❤️');
+                crearCorazones(25);
+                codigo = '';
+            }
+            if (codigo.length > 10) codigo = '';
+        });
+    </script>
+</body>
+</html>
