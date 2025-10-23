@@ -31,7 +31,6 @@
             line-height: 1.7;
         }
 
-        /* Escritura a mano para títulos */
         .titulo-mano {
             font-family: 'Caveat', cursive;
             font-size: 2.8em;
@@ -41,7 +40,6 @@
             font-weight: 700;
         }
 
-        /* Pantalla de entrada */
         .pantalla-entrada {
             position: fixed;
             top: 0;
@@ -107,7 +105,6 @@
             color: var(--color-texto);
         }
 
-        /* Navegación minimalista */
         .nav {
             background: var(--color-papel);
             padding: 20px 0;
@@ -149,7 +146,6 @@
             border-color: var(--color-secundario);
         }
 
-        /* Container principal */
         .contenedor {
             max-width: 900px;
             margin: 40px auto;
@@ -182,7 +178,6 @@
             }
         }
 
-        /* Sección inicio */
         .hero {
             text-align: center;
             padding: 30px 0;
@@ -208,7 +203,6 @@
             border-left: 4px solid var(--color-acento);
         }
 
-        /* Grid de cards simple */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -249,7 +243,6 @@
             opacity: 0.8;
         }
 
-        /* Contador de tiempo */
         .contador-tiempo {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -283,7 +276,6 @@
             margin-top: 5px;
         }
 
-        /* Galería simple */
         .galeria {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -297,31 +289,32 @@
             border-radius: 8px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
-            padding: 20px;
             border: 2px solid var(--color-secundario);
             cursor: pointer;
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .foto-box:hover {
             transform: scale(1.05) rotate(-2deg);
         }
 
-        .foto-emoji {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
         .foto-titulo {
             font-family: 'Caveat', cursive;
             font-size: 1.2em;
             text-align: center;
-            color: var(--color-texto);
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
 
-        /* Timeline más orgánico */
         .timeline {
             margin: 40px 0;
             padding-left: 30px;
@@ -366,7 +359,6 @@
             opacity: 0.85;
         }
 
-        /* Razones - lista simple */
         .razones-lista {
             margin: 30px 0;
         }
@@ -400,7 +392,6 @@
             margin-right: 10px;
         }
 
-        /* Juego minimalista */
         .pregunta-box {
             background: var(--color-fondo);
             padding: 30px;
@@ -479,7 +470,6 @@
             margin: 20px 0;
         }
 
-        /* Música minimalista */
         .playlist {
             margin: 30px 0;
         }
@@ -535,7 +525,6 @@
             border-bottom: 2px solid var(--color-terciario);
         }
 
-        /* Carta */
         .carta {
             background: linear-gradient(135deg, #fdfbf8 0%, #f9f6f2 100%);
             padding: 50px 40px;
@@ -576,7 +565,6 @@
             margin-top: 40px;
         }
 
-        /* Botones naturales */
         .boton {
             display: inline-block;
             padding: 12px 30px;
@@ -606,7 +594,6 @@
             background: #89a3b8;
         }
 
-        /* Modal simple */
         .overlay {
             position: fixed;
             top: 0;
@@ -657,7 +644,6 @@
             margin-bottom: 25px;
         }
 
-        /* Corazones flotantes */
         .corazon-float {
             position: fixed;
             pointer-events: none;
@@ -676,7 +662,6 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .seccion {
                 padding: 35px 25px;
@@ -703,16 +688,6 @@
             }
         }
 
-        /* Detalles decorativos */
-        .detalle-esquina {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2em;
-            opacity: 0.3;
-        }
-
-        /* Subtítulos */
         .subtitulo {
             text-align: center;
             font-size: 1em;
@@ -723,7 +698,6 @@
     </style>
 </head>
 <body>
-    <!-- Pantalla de entrada -->
     <div class="pantalla-entrada" id="pantallaEntrada">
         <div class="sobre" onclick="abrirSobre()">
             <div class="sobre-tapa"></div>
@@ -737,7 +711,6 @@
         </p>
     </div>
 
-    <!-- Navegación -->
     <nav class="nav" id="nav">
         <ul class="nav-lista">
             <li class="nav-item activo" onclick="irSeccion('inicio')">Inicio</li>
@@ -750,10 +723,8 @@
         </ul>
     </nav>
 
-    <!-- Contenedor -->
     <div class="contenedor">
         
-        <!-- Inicio -->
         <section class="seccion activa" id="inicio">
             <div class="hero">
                 <h1 class="titulo-mano">Feliz Cumpleaños Mi Amor</h1>
@@ -806,60 +777,32 @@
             <div class="contador-tiempo" id="contadorTiempo"></div>
         </section>
 
-        <!-- Galería -->
         <section class="seccion" id="galeria">
             <h1 class="titulo-mano">Galería de Recuerdos</h1>
             <p class="subtitulo">Cada foto cuenta una historia</p>
             
             <div class="galeria">
-                <div class="foto-box">
-                    <div class="foto-emoji">🌳</div>
-                    <div class="foto-titulo">Parque León</div>
+                <div class="foto-box" style="background-image: url('primera foto juntos.jpg.jpeg'); background-size: cover; background-position: center;">
+                    <div class="foto-titulo">Primera foto juntos</div>
                 </div>
-                <div class="foto-box">
-                    <div class="foto-emoji">💋</div>
-                    <div class="foto-titulo">Nuestro primer beso</div>
-                </div>
-                <div class="foto-box">
-                    <div class="foto-emoji">🎓</div>
+                <div class="foto-box" style="background-image: url('graduacio.jpg.jpeg'); background-size: cover; background-position: center;">
                     <div class="foto-titulo">Tu graduación en física</div>
                 </div>
-                <div class="foto-box">
-                    <div class="foto-emoji">🏔️</div>
+                <div class="foto-box" style="background-image: url('loja.jpg.jpeg'); background-size: cover; background-position: center;">
                     <div class="foto-titulo">En Loja</div>
                 </div>
-                <div class="foto-box">
-                    <div class="foto-emoji">⛰️</div>
+                <div class="foto-box" style="background-image: url('chimborazo.jpg.jpeg'); background-size: cover; background-position: center;">
                     <div class="foto-titulo">Chimborazo</div>
                 </div>
-                <div class="foto-box">
-                    <div class="foto-emoji">💻</div>
-                    <div class="foto-titulo">Nuestro proyecto juntos</div>
+                <div class="foto-box" style="background-image: url('proyecto.jpg.jpeg'); background-size: cover; background-position: center;">
+                    <div class="foto-titulo">Nuestro proyecto</div>
                 </div>
-                <div class="foto-box">
-                    <div class="foto-emoji">🎵</div>
-                    <div class="foto-titulo">Escuchando música</div>
+                <div class="foto-box" style="background-image: url('concierto.jpg.jpeg'); background-size: cover; background-position: center;">
+                    <div class="foto-titulo">Concierto</div>
                 </div>
-                <div class="foto-box">
-                    <div class="foto-emoji">❤️</div>
-                    <div class="foto-titulo">Un momento especial</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 30px;">
-                <p style="color: var(--color-texto); opacity: 0.7; line-height: 1.8;">
-                    💡 <strong>Para agregar fotos reales:</strong><br>
-                    1. Sube tus fotos a <a href="https://imgur.com" target="_blank" style="color: var(--color-acento);">Imgur.com</a> o <a href="https://imgbb.com" target="_blank" style="color: var(--color-acento);">ImgBB.com</a><br>
-                    2. Copia el "enlace directo" de cada foto<br>
-                    3. Edita el código y reemplaza los emojis con: <br>
-                    <code style="background: var(--color-terciario); padding: 5px 10px; border-radius: 5px; display: inline-block; margin-top: 5px;">
-                        style="background-image: url('TU-ENLACE-AQUI'); background-size: cover;"
-                    </code>
-                </p>
             </div>
         </section>
 
-        <!-- Historia -->
         <section class="seccion" id="historia">
             <h1 class="titulo-mano">Nuestra Historia</h1>
             <p class="subtitulo">Los momentos que nos trajeron aquí</p>
@@ -930,7 +873,6 @@
             </div>
         </section>
 
-        <!-- 23 Razones -->
         <section class="seccion" id="razones">
             <h1 class="titulo-mano">23 Razones por las que te amo</h1>
             <p class="subtitulo">Una por cada año de tu vida</p>
@@ -940,7 +882,6 @@
             <div class="razones-lista" id="razonesLista"></div>
         </section>
 
-        <!-- Juego -->
         <section class="seccion" id="juego">
             <h1 class="titulo-mano">Juego del Conocimiento</h1>
             <p class="subtitulo">Física, Historia, Silvana Estrada y Loja</p>
@@ -957,18 +898,36 @@
             </div>
         </section>
 
-        <!-- Música -->
         <section class="seccion" id="musica">
             <h1 class="titulo-mano">Nuestra Playlist</h1>
             <p class="subtitulo">Las canciones que nos unen</p>
             
             <div class="playlist">
-                <!-- PARA AGREGAR MÚSICA REAL DE SPOTIFY/YOUTUBE:
-                     1. Ve a Spotify/YouTube y encuentra la canción
-                     2. Haz clic en "Compartir" > "Copiar enlace"
-                     3. Reemplaza onclick="reproducir(...)" con onclick="window.open('TU-ENLACE', '_blank')"
-                     Ejemplo: onclick="window.open('https://open.spotify.com/track/...', '_blank')"
-                -->
+                <div class="categoria-musica">Nuestras Canciones 💕</div>
+                
+                <div class="cancion" onclick="reproducir(this, '100 años')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">100 años</div>
+                        <div class="cancion-artista">Pienso en tu mirá</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'El mató un policía motorizado')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">El mató un policía motorizado</div>
+                        <div class="cancion-artista">Nuestra canción indie favorita</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
+                
+                <div class="cancion" onclick="reproducir(this, 'Tu poeta')">
+                    <div class="cancion-info">
+                        <div class="cancion-titulo">Tu poeta</div>
+                        <div class="cancion-artista">Una canción especial para nosotros</div>
+                    </div>
+                    <div class="cancion-icon">▶️</div>
+                </div>
                 
                 <div class="categoria-musica">Silvana Estrada 🌹</div>
                 
@@ -1003,118 +962,81 @@
                     </div>
                     <div class="cancion-icon">▶️</div>
                 </div>
-                
-                <div class="categoria-musica">Nuestras Canciones 💕</div>
-                
-                <div class="cancion" onclick="reproducir(this, '100 años')">
-                    <div class="cancion-info">
-                        <div class="cancion-titulo">100 años</div>
-                        <div class="cancion-artista">Pienso en tu mirá</div>
-                    </div>
-                    <div class="cancion-icon">▶️</div>
-                </div>
-                
-                <div class="cancion" onclick="reproducir(this, 'El mató un policía motorizado')">
-                    <div class="cancion-info">
-                        <div class="cancion-titulo">El mató un policía motorizado</div>
-                        <div class="cancion-artista">Nuestra canción indie favorita</div>
-                    </div>
-                    <div class="cancion-icon">▶️</div>
-                </div>
-                
-                <div class="cancion" onclick="reproducir(this, 'Tu poeta')">
-                    <div class="cancion-info">
-                        <div class="cancion-titulo">Tu poeta</div>
-                        <div class="cancion-artista">Una canción especial para nosotros</div>
-                    </div>
-                    <div class="cancion-icon">▶️</div>
-                </div>
-                
-                <div class="cancion" onclick="reproducir(this, 'Primera vez juntos')">
-                    <div class="cancion-info">
-                        <div class="cancion-titulo">La del Parque León</div>
-                        <div class="cancion-artista">Esa noche especial</div>
-                    </div>
-                    <div class="cancion-icon">▶️</div>
-                </div>
-                
-                <div class="cancion" onclick="reproducir(this, 'Juntos')">
-                    <div class="cancion-info">
-                        <div class="cancion-titulo">La que cantamos juntos</div>
-                        <div class="cancion-artista">Aunque desafinemos un poco</div>
-                    </div>
-                    <div class="cancion-icon">▶️</div>
-                </div>
             </div>
         </section>
 
-        <!-- Carta -->
         <section class="seccion" id="carta">
             <h1 class="titulo-mano">Una Carta para Ti</h1>
             <p class="subtitulo">Palabras desde el corazón</p>
             
             <div class="carta">
                 <div class="carta-fecha">22 de octubre, 2025</div>
-                <div class="carta-saludo">Mi amor,</div>
+                <div class="carta-saludo">Mi queridísima,</div>
                 
                 <div class="carta-texto">
-                    Hoy celebras 23 años de vida. 23 vueltas alrededor del sol, como dirías tú. 
-                    Y yo celebro cada momento desde aquella noche en el Parque León cuando nuestras vidas se entrelazaron.
+                    En vano he luchado por encontrar las palabras justas. No servirá de nada. Mis sentimientos 
+                    no pueden reprimirse más. Debes permitirme que te diga con cuánta ardiente admiración y amor 
+                    celebro este día, en que el mundo tuvo la fortuna de recibirte hace veintitrés años.
                 </div>
                 
                 <div class="carta-texto">
-                    Recuerdo el día después de esa noche, cuando te besé y supe que algo había cambiado para siempre. 
-                    Desde ese momento no he podido sacarte de mi vida, y créeme, ni lo intento. 
-                    Eres la mejor cosa que me ha pasado.
+                    Aún recuerdo con perfecta claridad aquella noche en el Parque León. No sabía entonces que 
+                    el destino había conspirado para unir nuestros caminos de manera irrevocable. Al día siguiente, 
+                    cuando reuní el valor suficiente para besarte, comprendí una verdad fundamental: mi vida, 
+                    desde ese instante, quedaría irremediablemente ligada a la tuya.
                 </div>
                 
                 <div class="carta-texto">
-                    Vi tu graduación como física y me llenó de orgullo verte alcanzar tus metas. 
-                    Tu dedicación, tu inteligencia, tu pasión por la ciencia... Todo me fascina de ti. 
-                    Eres brillante en todo lo que haces.
+                    He sido testigo de tu brillantez, de esa mente excepcional que domina las leyes de la física 
+                    con la misma gracia con que iluminas cada espacio que habitas. El día de tu graduación, 
+                    mi pecho se hinchó de un orgullo que apenas podía contener. Eres, sin duda, la persona 
+                    más extraordinaria que he tenido el privilegio de conocer.
                 </div>
                 
                 <div class="carta-texto">
-                    Me llevaste a conocer Loja, tu ciudad, y cada calle cobró vida con tus historias. 
-                    Después conquistamos juntos el Chimborazo, literalmente llegamos a las alturas. 
-                    Cada aventura contigo es memorable.
+                    Me llevaste a conocer Loja, esa ciudad que te vio crecer y que guarda en cada piedra 
+                    la esencia de tu espíritu. Caminamos juntos hasta las alturas del Chimborazo, y en esa 
+                    conquista comprendí que no hay cima que no desee escalar a tu lado, ni abismo que me 
+                    separe de ti.
                 </div>
                 
                 <div class="carta-texto">
-                    Trabajar juntos en nuestro proyecto me mostró que somos un gran equipo. 
-                    Ver tu mente en acción, crear algo juntos, es de las mejores experiencias. 
-                    Contigo todo es mejor.
+                    Trabajar contigo en nuestro proyecto me reveló una verdad que ya presentía: somos dos almas 
+                    que se complementan con una armonía casi imposible de hallar en este mundo. Cada pensamiento 
+                    tuyo, cada gesto, me confirma que juntos somos más de lo que podríamos ser separados.
                 </div>
                 
                 <div class="carta-texto">
-                    Escuchar "100 años" o a Silvana Estrada contigo le da banda sonora perfecta a nuestra historia. 
-                    Cada canción, cada momento compartido, se queda grabado en mi memoria.
+                    La música que compartimos, desde las melodías de Silvana Estrada hasta "100 años", 
+                    se ha convertido en la banda sonora de nuestra historia. Cada nota cobra un significado 
+                    más profundo cuando resuena en tu presencia.
                 </div>
                 
                 <div class="carta-texto">
-                    En este nuevo año de tu vida, deseo que todos tus sueños se hagan realidad. 
-                    Que sigas brillando con esa luz que te caracteriza. Que cada día te acerque más 
-                    a todo lo que quieres lograr.
+                    En este aniversario de tu nacimiento, mi más ferviente deseo es que cada uno de tus sueños 
+                    encuentre su realización. Que tu luz, esa que me guía y me transforma, brille con mayor 
+                    intensidad cada día. Que la vida te colme de las dichas que tan merecidamente te corresponden.
                 </div>
                 
                 <div class="carta-texto">
-                    Te amo con todo mi corazón. Hoy, mañana y siempre.
+                    No existen palabras en lengua alguna que puedan expresar la profundidad de lo que siento. 
+                    Te amo con una constancia que desafía al tiempo, con una intensidad que me sorprende 
+                    incluso a mí mismo. Hoy, mañana y por todos los días que el destino nos conceda.
                 </div>
                 
                 <div class="carta-texto">
-                    Felices 23, mi amor.
+                    Tuya, irrevocablemente tuya.
                 </div>
                 
                 <div class="carta-firma">
-                    Con todo mi amor,<br>
-                    [Tu nombre] ❤️
+                    Con la más profunda devoción,<br>
+                    Tu fiel enamorado ❤️
                 </div>
             </div>
         </section>
 
     </div>
 
-    <!-- Modal -->
     <div class="overlay" id="overlay" onclick="cerrarModal()"></div>
     <div class="modal" id="modal">
         <h3 class="modal-titulo" id="modalTitulo">💕</h3>
@@ -1123,12 +1045,10 @@
     </div>
 
     <script>
-        // Variables
         let preguntaActual = 0;
         let puntuacion = 0;
         let cancionReproduciendo = null;
 
-        // Preguntas personalizadas
         const preguntas = [
             {
                 pregunta: "🔬 ¿Quién formuló la teoría de la relatividad?",
@@ -1180,7 +1100,6 @@
             }
         ];
 
-        // 23 razones
         const razones = [
             "Desde esa noche en el Parque León, no he podido sacarte de mi vida",
             "Nuestro primer beso al día siguiente lo cambió todo para siempre",
@@ -1207,7 +1126,6 @@
             "Simplemente porque eres TÚ, mi amor ❤️"
         ];
 
-        // Funciones de navegación
         function abrirSobre() {
             document.getElementById('pantallaEntrada').classList.add('ocultar');
             document.getElementById('nav').classList.add('mostrar');
@@ -1217,27 +1135,21 @@
         }
 
         function irSeccion(seccionId) {
-            // Ocultar todas
             document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
-            // Mostrar seleccionada
             document.getElementById(seccionId).classList.add('activa');
             
-            // Actualizar nav
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('activo'));
             event.target.classList.add('activo');
             
-            // Scroll arriba
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // Cargar juego si es necesario
             if (seccionId === 'juego' && preguntaActual === 0) {
                 cargarPregunta();
             }
         }
 
-        // Contador de tiempo
         function actualizarContador() {
-            const inicio = new Date('2023-01-01'); // CAMBIAR ESTA FECHA
+            const inicio = new Date('2023-01-01');
             const ahora = new Date();
             const diff = ahora - inicio;
             
@@ -1266,7 +1178,6 @@
             `;
         }
 
-        // Razones
         function mostrarRazones() {
             const lista = document.getElementById('razonesLista');
             lista.innerHTML = '';
@@ -1283,7 +1194,6 @@
             });
         }
 
-        // Juego
         function cargarPregunta() {
             if (preguntaActual >= preguntas.length) {
                 mostrarResultadoJuego();
@@ -1357,7 +1267,6 @@
             cargarPregunta();
         }
 
-        // Música
         function reproducir(elemento, nombre) {
             const canciones = document.querySelectorAll('.cancion');
             canciones.forEach(c => {
@@ -1379,7 +1288,6 @@
             }
         }
 
-        // Modal
         function mostrarModal(titulo, texto) {
             document.getElementById('modalTitulo').textContent = titulo;
             document.getElementById('modalTexto').textContent = texto;
@@ -1392,7 +1300,6 @@
             document.getElementById('modal').classList.remove('mostrar');
         }
 
-        // Corazones flotantes
         function crearCorazones(cantidad) {
             for (let i = 0; i < cantidad; i++) {
                 setTimeout(() => {
@@ -1408,7 +1315,6 @@
             }
         }
 
-        // Easter egg
         let codigo = '';
         document.addEventListener('keypress', e => {
             codigo += e.key;
