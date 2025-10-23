@@ -905,62 +905,80 @@
             <div class="playlist">
                 <div class="categoria-musica">Nuestras Canciones 💕</div>
                 
-                <div class="cancion" onclick="reproducir(this, '100 años')">
+                <!-- INSTRUCCIÓN: Para agregar música de Spotify:
+                     1. Ve a Spotify y busca la canción
+                     2. Click derecho → Compartir → Copiar enlace para insertar
+                     3. Pega el código iframe aquí abajo
+                     
+                     Ejemplo de código de Spotify:
+                     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/TU-ID-AQUI" 
+                             width="100%" height="80" frameBorder="0" allowfullscreen="" 
+                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                -->
+                
+                <div class="cancion" onclick="window.open('https://open.spotify.com/search/100%20a%C3%B1os', '_blank')">
                     <div class="cancion-info">
                         <div class="cancion-titulo">100 años</div>
-                        <div class="cancion-artista">Pienso en tu mirá</div>
+                        <div class="cancion-artista">Pienso en tu mirá - Click para buscar en Spotify</div>
                     </div>
-                    <div class="cancion-icon">▶️</div>
+                    <div class="cancion-icon">🎵</div>
                 </div>
                 
-                <div class="cancion" onclick="reproducir(this, 'El mató un policía motorizado')">
+                <div class="cancion" onclick="window.open('https://open.spotify.com/search/el%20mato%20un%20policia%20motorizado', '_blank')">
                     <div class="cancion-info">
                         <div class="cancion-titulo">El mató un policía motorizado</div>
-                        <div class="cancion-artista">Nuestra canción indie favorita</div>
+                        <div class="cancion-artista">Click para buscar en Spotify</div>
                     </div>
-                    <div class="cancion-icon">▶️</div>
+                    <div class="cancion-icon">🎵</div>
                 </div>
                 
-                <div class="cancion" onclick="reproducir(this, 'Tu poeta')">
+                <div class="cancion" onclick="window.open('https://open.spotify.com/search/tu%20poeta', '_blank')">
                     <div class="cancion-info">
                         <div class="cancion-titulo">Tu poeta</div>
-                        <div class="cancion-artista">Una canción especial para nosotros</div>
+                        <div class="cancion-artista">Click para buscar en Spotify</div>
                     </div>
-                    <div class="cancion-icon">▶️</div>
+                    <div class="cancion-icon">🎵</div>
                 </div>
                 
                 <div class="categoria-musica">Silvana Estrada 🌹</div>
                 
-                <div class="cancion" onclick="reproducir(this, 'Te Guardo')">
+                <div class="cancion" onclick="window.open('https://open.spotify.com/search/te%20guardo%20silvana%20estrada', '_blank')">
                     <div class="cancion-info">
                         <div class="cancion-titulo">Te Guardo</div>
-                        <div class="cancion-artista">Silvana Estrada</div>
+                        <div class="cancion-artista">Silvana Estrada - Click para escuchar</div>
                     </div>
-                    <div class="cancion-icon">▶️</div>
+                    <div class="cancion-icon">🎵</div>
                 </div>
                 
-                <div class="cancion" onclick="reproducir(this, 'Marchita')">
+                <div class="cancion" onclick="window.open('https://open.spotify.com/search/marchita%20silvana%20estrada', '_blank')">
                     <div class="cancion-info">
                         <div class="cancion-titulo">Marchita</div>
-                        <div class="cancion-artista">Silvana Estrada</div>
+                        <div class="cancion-artista">Silvana Estrada - Click para escuchar</div>
                     </div>
-                    <div class="cancion-icon">▶️</div>
+                    <div class="cancion-icon">🎵</div>
                 </div>
                 
-                <div class="cancion" onclick="reproducir(this, 'Lo Sagrado')">
+                <div class="cancion" onclick="window.open('https://open.spotify.com/search/lo%20sagrado%20silvana%20estrada', '_blank')">
                     <div class="cancion-info">
                         <div class="cancion-titulo">Lo Sagrado</div>
-                        <div class="cancion-artista">Silvana Estrada</div>
+                        <div class="cancion-artista">Silvana Estrada - Click para escuchar</div>
                     </div>
-                    <div class="cancion-icon">▶️</div>
+                    <div class="cancion-icon">🎵</div>
                 </div>
                 
-                <div class="cancion" onclick="reproducir(this, 'Un Día A La Vez')">
+                <div class="cancion" onclick="window.open('https://open.spotify.com/search/un%20dia%20a%20la%20vez%20silvana%20estrada', '_blank')">
                     <div class="cancion-info">
                         <div class="cancion-titulo">Un Día A La Vez</div>
-                        <div class="cancion-artista">Silvana Estrada</div>
+                        <div class="cancion-artista">Silvana Estrada - Click para escuchar</div>
                     </div>
-                    <div class="cancion-icon">▶️</div>
+                    <div class="cancion-icon">🎵</div>
+                </div>
+                
+                <div style="background: var(--color-terciario); padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+                    <p style="font-size: 0.95em; color: var(--color-texto); line-height: 1.8;">
+                        💡 <strong>Nota:</strong> Las canciones abrirán Spotify para escucharlas.<br>
+                        Para mejor experiencia, puedes agregar reproductores embebidos editando el código.
+                    </p>
                 </div>
             </div>
         </section>
